@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import os
 import json
 import ctypes
@@ -923,7 +924,7 @@ def format_llama2(
     if system_message:
         system_message = _system_template.format(system_message=system_message)
     _prompt = _format_llama2(system_message, _messages, " ", "</s>") + "[/INST]"
-    print("llama-2 prompt:", _prompt)
+    print("llama-2 prompt:", _prompt, file=sys.stderr)
     logger.info("llama-2 prompt: %s", _prompt)
     return ChatFormatterResponse(prompt=_prompt)
 
@@ -1246,7 +1247,7 @@ def format_mistral_instruct(
         ):
             prompt += " [/INST]" + message["content"] + eos
     prompt += " [/INST]"
-    print("mistral-instruct prompt:", prompt)
+    print("mistral-instruct prompt:", prompt, file=sys.stderr)
     logger.info("mistral-instruct prompt: %s", prompt)
     return ChatFormatterResponse(prompt=prompt, stop=stop)
 
