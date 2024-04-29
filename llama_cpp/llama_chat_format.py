@@ -923,6 +923,7 @@ def format_llama2(
     if system_message:
         system_message = _system_template.format(system_message=system_message)
     _prompt = _format_llama2(system_message, _messages, " ", "</s>") + "[/INST]"
+    print("llama-2 prompt:", _prompt)
     return ChatFormatterResponse(prompt=_prompt)
 
 
@@ -1244,6 +1245,7 @@ def format_mistral_instruct(
         ):
             prompt += " [/INST]" + message["content"] + eos
     prompt += " [/INST]"
+    print("mistral-instruct prompt:", prompt)
     return ChatFormatterResponse(prompt=prompt, stop=stop)
 
 
