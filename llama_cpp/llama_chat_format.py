@@ -946,6 +946,8 @@ def format_llama3(
     _messages = _map_roles(messages, _roles)
     _messages.append((_roles["assistant"], None))
     _prompt = _format_no_colon_single(_begin_token, _messages, _sep)
+    print("llama-3 prompt:", _prompt, file=sys.stderr)
+    logger.info("llama-3 prompt: %s", _prompt)
     return ChatFormatterResponse(prompt=_prompt, stop=_sep)
 
 
